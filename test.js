@@ -1,6 +1,9 @@
 var net = require('net'),
   fs = require('fs'),
-  dataDir = './data/';
+  process = require('process'),
+  dataDir = './data/',
+  runAs = 'michiel';
+
 var server = net.createServer(function(c) { //'connection' listener
   console.log('server connected');
   c.on('end', function() {
@@ -31,3 +34,4 @@ var server = net.createServer(function(c) { //'connection' listener
 server.listen(43, function() { //'listening' listener
   console.log('server bound');
 });
+process.setuid(runAs);
